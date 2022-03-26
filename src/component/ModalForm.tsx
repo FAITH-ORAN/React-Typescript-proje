@@ -23,14 +23,14 @@ import {Wrapper} from "../style/Modal.style";
 
 
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
-<Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-[`& .${tooltipClasses.tooltip}`]: {
-backgroundColor: theme.palette.common.white,
-color: 'rgba(0, 0, 0, 0.87)',
-boxShadow: theme.shadows[1],
-fontSize: 11,
-},
+  <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+  backgroundColor: theme.palette.common.white,
+  color: 'rgba(0, 0, 0, 0.87)',
+  boxShadow: theme.shadows[1],
+  fontSize: 11,
+  },
 }));
 
 
@@ -50,7 +50,7 @@ padding:'20px',
 
 export default function ModalForm() {
    
-    // useState
+    // useState & useLocalStorage
     const [localisation, setLocal] = useLocalStorage("localisation", "");
     const [adress, setAdress] = useLocalStorage("adress", "");
     const [urlImg, setImg] = useLocalStorage("urlImg","");
@@ -60,14 +60,16 @@ export default function ModalForm() {
     const [area, setArea] =useLocalStorage("area", "");
     const [todos,setTodos] = useState<ICard[]>([]);
 
+
+     //a function added to button submit
     const addCard = () => {
       const newCard={localisation: localisation,adress:adress,urlImg:urlImg,nbrPeople:nbrPeople,nbrHotel:nbrHotel,average:average,area:area}
       setTodos([...todos,newCard])
-     
       handleClose();
       console.log(todos);
     }
 
+    //function to delete card
     const completeCard=(CardNameToDelete:string)=>{
       setTodos(todos.filter((localisation)=>{
         return localisation.localisation != CardNameToDelete
@@ -116,13 +118,15 @@ export default function ModalForm() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    console.log(localisation)
-    console.log(adress)
-    console.log(urlImg)
-    console.log(nbrPeople)
-    console.log(nbrHotel)
-    console.log(average)
-    console.log(area)
+
+    // console.log to verify all my input values
+    // console.log(localisation)
+    // console.log(adress)
+    // console.log(urlImg)
+    // console.log(nbrPeople)
+    // console.log(nbrHotel)
+    // console.log(average)
+    // console.log(area)
 
     return (
       <Wrapper>
@@ -186,12 +190,12 @@ export default function ModalForm() {
           </Box>
         </Modal>  
                   
-                    <Grid container  rowSpacing={{md:1}} columnSpacing={ {md:1}}>
-                          {todos.map((localisation:ICard,key:number)=>{
-                            return <CardItem key={key} localisation={localisation} completeCard={completeCard}  />
-                          }
-                          )}
-                    </Grid> 
+          <Grid container  rowSpacing={{md:1}} columnSpacing={ {md:1}}>
+                {todos.map((localisation:ICard,key:number)=>{
+                  return <CardItem key={key} localisation={localisation} completeCard={completeCard}  />
+                }
+                )}
+          </Grid> 
           
       </Wrapper>
 )}

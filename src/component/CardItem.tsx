@@ -2,7 +2,6 @@ import React from 'react';
 import {ICard} from "../interface/interface";
 import Switch from '@mui/material/Switch';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 //styles//
@@ -16,10 +15,7 @@ interface Props{
 }
 
 const CardItem=({localisation,completeCard}:Props)=>{
-    const delHandler=()=>{
-        console.log("delete")
-    }
-   
+    
     return (
         <Wrapper>
               

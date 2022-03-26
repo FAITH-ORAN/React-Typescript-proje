@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+//function to set and get Local storage
 function getStorageValue(key:string, defaultValue:string) {
     // getting stored value
     const saved = localStorage.getItem(key);
